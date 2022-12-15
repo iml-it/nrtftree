@@ -23,7 +23,7 @@
  * Home Page:	http://www.sgoliver.net
  * GitHub:	    https://github.com/sgolivernet/nrtftree
  * Class:		ImageNode
- * Description:	Nodo RTF especializado que contiene la información de una imagen.
+ * Description:	Nodo RTF especializado que contiene la informaciï¿½n de una imagen.
  * ******************************************************************************/
 
 using System.Text;
@@ -31,6 +31,7 @@ using Net.Sgoliver.NRtfTree.Core;
 using System.IO;
 using System.Globalization;
 using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Net.Sgoliver.NRtfTree
 {
@@ -44,7 +45,7 @@ namespace Net.Sgoliver.NRtfTree
             #region Atributos privados
 
             /// <summary>
-            /// Array de bytes con la información de la imagen.
+            /// Array de bytes con la informaciï¿½n de la imagen.
             /// </summary>
             private byte[] data;
 
@@ -55,7 +56,7 @@ namespace Net.Sgoliver.NRtfTree
             /// <summary>
             /// Constructor de la clase ImageNode.
             /// </summary>
-            /// <param name="node">Nodo RTF del que se obtendrán los datos de la imagen.</param>
+            /// <param name="node">Nodo RTF del que se obtendrï¿½n los datos de la imagen.</param>
             public ImageNode(RtfTreeNode node)
             {
 				if(node != null)
@@ -94,20 +95,20 @@ namespace Net.Sgoliver.NRtfTree
             /// <summary>
             /// Devuelve el formato original de la imagen.
             /// </summary>
-            public System.Drawing.Imaging.ImageFormat ImageFormat
+            public ImageFormat ImageFormat
             { 
                 get 
                 {
                     if (SelectSingleChildNode("jpegblip") != null)
-                        return System.Drawing.Imaging.ImageFormat.Jpeg;
+                        return ImageFormat.Jpeg;
                     else if (SelectSingleChildNode("pngblip") != null)
-                        return System.Drawing.Imaging.ImageFormat.Png;
+                        return ImageFormat.Png;
                     else if (SelectSingleChildNode("emfblip") != null)
-                        return System.Drawing.Imaging.ImageFormat.Emf;
+                        return ImageFormat.Emf;
                     else if (SelectSingleChildNode("wmetafile") != null)
-                        return System.Drawing.Imaging.ImageFormat.Wmf;
+                        return ImageFormat.Wmf;
                     else if (SelectSingleChildNode("dibitmap") != null || SelectSingleChildNode("wbitmap") != null)
-                        return System.Drawing.Imaging.ImageFormat.Bmp;
+                        return ImageFormat.Bmp;
                     else
                         return null;
                 }
@@ -237,7 +238,7 @@ namespace Net.Sgoliver.NRtfTree
             /// <summary>
             /// Guarda una imagen a fichero con el formato original.
             /// </summary>
-            /// <param name="filePath">Ruta del fichero donde se guardará la imagen.</param>
+            /// <param name="filePath">Ruta del fichero donde se guardarï¿½ la imagen.</param>
             public void SaveImage(string filePath)
             {
                 if (data != null)
@@ -251,10 +252,10 @@ namespace Net.Sgoliver.NRtfTree
             }
 
             /// <summary>
-            /// Guarda una imagen a fichero con un formato determinado indicado como parámetro.
+            /// Guarda una imagen a fichero con un formato determinado indicado como parï¿½metro.
             /// </summary>
-            /// <param name="filePath">Ruta del fichero donde se guardará la imagen.</param>
-            /// <param name="format">Formato con el que se escribirá la imagen.</param>
+            /// <param name="filePath">Ruta del fichero donde se guardarï¿½ la imagen.</param>
+            /// <param name="format">Formato con el que se escribirï¿½ la imagen.</param>
             public void SaveImage(string filePath, System.Drawing.Imaging.ImageFormat format)
             {
                 if (data != null)
@@ -281,7 +282,7 @@ namespace Net.Sgoliver.NRtfTree
             #region Metodos privados
 
             /// <summary>
-            /// Obtiene los datos de la imagen a partir de la información contenida en el nodo RTF.
+            /// Obtiene los datos de la imagen a partir de la informaciï¿½n contenida en el nodo RTF.
             /// </summary>
             private void getImageData()
             {
